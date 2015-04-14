@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:demo="http://schemas.android.com/apk/res-auto">
+    <item android:color="@color/error_pressed" demo:state_error="true" android:state_pressed="true" />
+    <item android:color="@color/error" demo:state_error="true" />
+    <item android:color="@color/warning_pressed" demo:state_warning="true" android:state_pressed="true" />
+    <item android:color="@color/warning" demo:state_warning="true" />
     <item android:color="@color/normal_pressed" android:state_pressed="true" />
     <item android:color="@color/normal" />
 </selector>

@@ -16,4 +16,8 @@
         <attr name="isLoading" format="boolean" />
     </declare-styleable>
 
+    <attr name="state_normal" format="boolean" />
+    <attr name="state_warning" format="boolean" />
+    <attr name="state_error" format="boolean" />
+
 </resources>

@@ -24,6 +24,18 @@ public class CustomView extends LinearLayout {
 
     private int mPosition = 0;
 
+    public enum ViewState {
+        NORMAL,
+        WARNING,
+        ERROR
+    }
+
+    private static final int[] STATE_NORMAL = {R.attr.state_normal};
+    private static final int[] STATE_WARNING = {R.attr.state_warning};
+    private static final int[] STATE_ERROR = {R.attr.state_error};
+
+    private ViewState mViewState = null;
+
     public CustomView(Context context) {
         super(context);
     }
@@ -65,6 +77,8 @@ public class CustomView extends LinearLayout {
     public void setIsLoading(boolean isLoading) {
         mIsLoading = isLoading;
 
+        setClickable(!isLoading);
+
         mProgressBar.setVisibility(mIsLoading ? View.VISIBLE : View.INVISIBLE);
         mSecondaryLabel.setVisibility(mIsLoading ? View.INVISIBLE : View.VISIBLE);
     }
@@ -97,6 +111,36 @@ public class CustomView extends LinearLayout {
         super.setBackgroundResource(resid);
 
         setPadding(l, t, r, b);
+    }
+
+    public void setViewState(ViewState state) {
+        if (state != mViewState) {
+            mViewState = state;
+            refreshDrawableState();
+        }
+    }
+
+    @Override
+    protected int[] onCreateDrawableState(int extraSpace) {
+        if (mViewState == null) {
+            return super.onCreateDrawableState(extraSpace);
+        }
+
+        final int[] drawableState = super.onCreateDrawableState(extraSpace + 1);
+
+        switch (mViewState) {
+            case NORMAL:
+                mergeDrawableStates(drawableState, STATE_NORMAL);
+                break;
+            case WARNING:
+                mergeDrawableStates(drawableState, STATE_WARNING);
+                break;
+            case ERROR:
+                mergeDrawableStates(drawableState, STATE_ERROR);
+                break;
+        }
+
+        return drawableState;
     }
 
 }

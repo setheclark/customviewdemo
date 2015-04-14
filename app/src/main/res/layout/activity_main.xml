@@ -14,21 +14,29 @@
         android:layout_marginBottom="10dp" />
 
     <com.scdev.viewdemo.lib.CustomView
+        android:id="@+id/cv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         demo:isLoading="true"
         demo:labelText="Top"
         demo:position="top" />
 
     <com.scdev.viewdemo.lib.CustomView
+        android:id="@+id/cv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        demo:isLoading="true"
         demo:labelText="Middle"
         demo:position="middle" />
 
     <com.scdev.viewdemo.lib.CustomView
+        android:id="@+id/cv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        demo:isLoading="true"
         demo:labelText="Bottom"
         demo:position="bottom" />
 
