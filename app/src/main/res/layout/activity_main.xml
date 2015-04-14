@@ -1,13 +1,35 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:demo="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.scdev.viewdemo.lib.CustomView
         android:id="@+id/cv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" />
 
-</RelativeLayout>
+    <com.scdev.viewdemo.lib.CustomView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        demo:isLoading="true"
+        demo:labelText="Top"
+        demo:position="top" />
+
+    <com.scdev.viewdemo.lib.CustomView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        demo:labelText="Middle"
+        demo:position="middle" />
+
+    <com.scdev.viewdemo.lib.CustomView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        demo:labelText="Bottom"
+        demo:position="bottom" />
+
+</LinearLayout>

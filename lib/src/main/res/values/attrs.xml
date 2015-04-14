@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomView">
+        <!-- Determines the background used for the view. -->
+        <attr name="position" format="enum">
+            <!-- The view is not part of a group -->
+            <enum name="single" value="0" />
+            <!-- The view is in the first, or top position -->
+            <enum name="top" value="1" />
+            <!-- The view is between the first and last(top and bottom) position -->
+            <enum name="middle" value="2" />
+            <!-- The view is in the last, or bottom position -->
+            <enum name="bottom" value="3" />
+        </attr>
+        <attr name="labelText" format="string" />
+        <attr name="isLoading" format="boolean" />
+    </declare-styleable>
+
+</resources>
