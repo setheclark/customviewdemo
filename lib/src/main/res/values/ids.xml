@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="__cv_main_label" type="id" />
+    <item name="__cv_secondary_label" type="id" />
+    <item name="__cv_progress" type="id" />
+</resources>
