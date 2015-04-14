@@ -5,12 +5,17 @@ import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IntDef;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public class CustomView extends LinearLayout {
 
@@ -19,6 +24,11 @@ public class CustomView extends LinearLayout {
     ProgressBar mProgressBar;
 
     private boolean mIsLoading;
+
+    @IntDef(value = {SINGLE, TOP, MIDDLE, BOTTOM})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Position {
+    }
 
     public static final int SINGLE = 0;
     public static final int TOP = 1;
@@ -61,7 +71,7 @@ public class CustomView extends LinearLayout {
         a.recycle();
     }
 
-    public void setMainLabelText(int text) {
+    public void setMainLabelText(@StringRes int text) {
         mMainLabel.setText(text);
     }
 
@@ -69,7 +79,7 @@ public class CustomView extends LinearLayout {
         mMainLabel.setText(text);
     }
 
-    public void setSecondaryLabelText(int text) {
+    public void setSecondaryLabelText(@StringRes int text) {
         mSecondaryLabel.setText(text);
     }
 
@@ -86,7 +96,7 @@ public class CustomView extends LinearLayout {
         mSecondaryLabel.setVisibility(mIsLoading ? View.INVISIBLE : View.VISIBLE);
     }
 
-    public void setPosition(int i) {
+    public void setPosition(@Position int i) {
         mPosition = i;
         switch (mPosition) {
             case SINGLE:
