@@ -2,7 +2,10 @@ package com.scdev.viewdemo.lib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -141,6 +144,70 @@ public class CustomView extends LinearLayout {
         }
 
         return drawableState;
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState);
+
+        ss.secondary = mSecondaryLabel.getText();
+        ss.position = mPosition;
+        ss.viewState = mViewState == null ? ViewState.NORMAL.ordinal() : mViewState.ordinal();
+        ss.isLoading = mIsLoading;
+        return ss;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        mSecondaryLabel.setText(ss.secondary);
+        setPosition(ss.position);
+        setViewState(ViewState.values()[ss.viewState]);
+        setIsLoading(ss.isLoading);
+    }
+
+    static class SavedState extends BaseSavedState {
+        CharSequence secondary;
+        int position;
+        int viewState;
+        boolean isLoading;
+
+        SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        private SavedState(Parcel in) {
+            super(in);
+
+            secondary = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+            position = in.readInt();
+            viewState = in.readInt();
+            isLoading = in.readByte() == 0 ? false : true;
+        }
+
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+
+            TextUtils.writeToParcel(secondary, out, 0);
+            out.writeInt(position);
+            out.writeInt(viewState);
+            out.writeByte((byte) (isLoading ? 1 : 0));
+        }
+
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = new Parcelable.Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel in) {
+                return new SavedState(in);
+            }
+
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 
 }
